@@ -20,7 +20,7 @@ model User {
   email       String      @db.VarChar(70) @unique
   password    String?
   created_at  DateTime    @default(now())
-  Post         Post[]
+  posts         Post[]
 }
 
 model Post {

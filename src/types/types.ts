@@ -13,3 +13,7 @@ type AuthErrorType = {
   username?: string;
   password?: string;
 };
+
+type PostErrorType = {
+  content?: string;
+};
