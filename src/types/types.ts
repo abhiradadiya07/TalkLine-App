@@ -16,4 +16,22 @@ type AuthErrorType = {
 
 type PostErrorType = {
   content?: string;
+  image?: string;
 };
+
+type User = {
+  id: number;
+  name: string;
+  username: string;
+  email?: string;
+  image?: string;
+};
+
+type PostType = {
+  id:number;
+  user_id:number;
+  content : string;
+  image?:string;
+  user: User;
+  createdAt:string
+}

@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import moment from "moment";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -12,4 +13,8 @@ export function bytesToMB(bytes:number):number{
 
 export function getRandomNumber(min: number, max: number): string {
   return Math.floor(Math.random() * (max - min + 1) + min).toString();
+} 
+
+export function formateDate(date: string): string {
+  return moment(date).fromNow();
 }

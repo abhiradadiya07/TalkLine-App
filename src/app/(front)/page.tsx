@@ -1,9 +1,12 @@
 import Loading from "@/components/common/Loading";
+import PostCard from "@/components/common/PostCard";
 import AddThread from "@/components/threads/AddThreads";
+import { fetchPosts } from "@/lib/serverMethods";
 import Image from "next/image";
 import { Suspense } from "react";
 
-export default function FrontLayout() {
+export default async function Home() {
+  const posts: Array<PostType> | [] = await fetchPosts();
   return (
     <div>
       <div className="flex justify-center items-center">
@@ -18,9 +21,9 @@ export default function FrontLayout() {
       <AddThread />
       <Suspense fallback={<Loading />}>
         <div className="mt-10">
-          {/* {posts.map((item) => (
+          {posts.map((item) => (
             <PostCard post={item} key={item.id} />
-          ))} */}
+          ))}
         </div>
       </Suspense>
     </div>

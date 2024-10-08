@@ -19,7 +19,7 @@ export default function UserListCard() {
             <span className="ml-2 font-light text-xs">@abhi`</span>
           </div>
           {/* <Link href={`/user/${user.id}`}> */}
-            <Button size="sm">view</Button>
+          <Button size="sm">view</Button>
           {/* </Link> */}
         </div>
       </div>
