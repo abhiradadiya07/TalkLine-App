@@ -20,35 +20,35 @@ export async function fetchPosts() {
   return response!.data;
 }
 
-// export async function fetchUsers() {
-//   const res = await fetch(`${Env.APP_URL}/api/user`, {
-//     headers: headers(),
-//     next: {
-//       revalidate: 3600,
-//     },
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fecth posts");
-//   }
-//   const response = await res.json();
-//   return response?.data;
-// }
+export async function fetchUsers() {
+  const res = await fetch(`${Env.APP_URL}/api/user`, {
+    headers: headers(),
+    next: {
+      revalidate: 3600,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fecth posts");
+  }
+  const response = await res.json();
+  return response?.data;
+}
 
 // // * Fetch user posts
-// export async function fetchUserPosts() {
-//   const res = await fetch(`${Env.APP_URL}/api/user/post`, {
-//     headers: headers(),
-//     cache: "no-cache",
-//     next: {
-//       revalidate: 3600,
-//     },
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fecth posts");
-//   }
-//   const response = await res.json();
-//   return response!.data;
-// }
+export async function fetchUserPosts() {
+  const res = await fetch(`${Env.APP_URL}/api/user/post`, {
+    headers: headers(),
+    cache: "no-cache",
+    next: {
+      revalidate: 3600,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fecth posts");
+  }
+  const response = await res.json();
+  return response!.data;
+}
 
 // // * Fetch user comments
 // export async function fetchUserComments() {
