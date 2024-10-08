@@ -4,53 +4,43 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-const Login = () => {
+const Register = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const { status } = useSession();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errors, setErrors] = useState<AuthErrorType>();
   const [authState, setAuthState] = useState<AuthStateType>({
     email: "",
     password: "",
+    name: "",
+    username: "",
+    password_confirmation: "",
   });
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/");
-    }
-  }, [status]);
+
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<AuthErrorType>();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAuthState({ ...authState, [e.target.name]: e.target.value });
   };
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post("api/auth/login", authState)
+      .post("/api/auth/register", authState)
       .then((res) => {
         setLoading(false);
         const response = res.data;
         if (response.status === 200) {
-          signIn("credentials", {
-            email: authState.email,
-            password: authState.password,
-            callbackUrl: "/",
-            redirect: true,
-          });
+          router.push(`/login?message=${response.message}`);
         } else if (response.status === 400) {
           setErrors(response.errors);
         }
       })
       .catch((err) => {
         setLoading(false);
-        console.log("error is", err);
+        console.log("The error is", err);
       });
   };
 
@@ -61,17 +51,31 @@ const Login = () => {
           <div className="flex justify-center">
             <Image src="/images/logo.svg" width={50} height={50} alt="Logo" />
           </div>
-          {searchParams.get("message") ? (
-            <div className="bg-green-400 p-2 rounded-lg my-2 text-center">
-              <strong>Success!!</strong>
-              <span className="ml-2">{searchParams.get("message")}</span>
-            </div>
-          ) : (
-            <></>
-          )}
-          <h1 className="text-2xl font-bold">Login</h1>
-          <p>Welcome</p>
+          <h1 className="text-2xl font-bold">Register</h1>
+          <p>Welcome to threads</p>
           <form onSubmit={submit}>
+            <div className="mt-5">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                onChange={(e) => handleOnChange(e)}
+              />
+              <span className="text-red-400 font-bold">{errors?.name}</span>
+            </div>
+            <div className="mt-5">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                onChange={(e) => handleOnChange(e)}
+              />
+              <span className="text-red-400 font-bold">{errors?.username}</span>
+            </div>
             <div className="mt-5">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -95,16 +99,27 @@ const Login = () => {
               <span className="text-red-400 font-bold">{errors?.password}</span>
             </div>
             <div className="mt-5">
-              <Button className="w-full" type="submit">
-                {loading ? "Processing..." : "Login"}
+              <Label htmlFor="confirmpassword">Confirm Password</Label>
+              <Input
+                type="password"
+                name="password_confirmation"
+                id="confirmpassword"
+                placeholder="Enter Password"
+                onChange={(e) => handleOnChange(e)}
+              />
+            </div>
+
+            <div className="mt-5">
+              <Button className="w-full" type="submit" disabled={loading}>
+                {loading ? "Processing..." : "Register"}
               </Button>
             </div>
           </form>
           <div className="mt-5">
             <span>
-              Don&apos;t have an account?
-              <Link href="/register" className="text-orange-400 ml-2">
-                Register
+              Already have an account?
+              <Link href="/login" className="text-orange-400 ml-2">
+                Login
               </Link>
             </span>
           </div>
@@ -113,4 +128,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default Register;

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import CustomProvider from "./CustomProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Thread",
-  description: "A social media platform.",
+  description: "The Threads app to share your thoughts and much more.",
   icons: "./favicon.ico",
 };
 
@@ -31,14 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <CustomProvider>{children}</CustomProvider>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );
