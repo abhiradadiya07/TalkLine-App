@@ -32,6 +32,7 @@ type PostType = {
   user_id:number;
   content : string;
   image?:string;
+  comment_count : number;
   user: User;
   createdAt:string
 }

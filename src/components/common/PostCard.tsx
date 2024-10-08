@@ -1,18 +1,12 @@
 "use client";
 
-// import React, { useState } from "react";
-// import Env from "@/config/env";
-// import AddComment from "../threads/AddComment";
-// import Link from "next/link";
-// import { Heart } from "lucide-react";
-// import ShareModal from "./ShareModal";
-// import ImageViewer from "./ImageViewer";
-// import axios from "axios";
 import UserPostBar from "./UserPostBar";
 import ImageViewer from "./ImageViewer";
+import AddComment from "../threads/AddComment";
+import { Heart } from "lucide-react";
 
 export default function PostCard({
-  post,
+  post
 }: //   noRedirect,
 //   isAuthPost,
 {
@@ -47,8 +41,8 @@ export default function PostCard({
         {post.content}
         {/* </Link> */}
         {post?.image ? <ImageViewer image={post.image} /> : <></>}
-        {/* <div className="mt-5 flex items-center">
-          {post.Likes.length > 0 || isLiked == "1" ? (
+        <div className="mt-5 flex items-center">
+          {/* {post.Likes.length > 0 || isLiked == "1" ? (
             <svg
               width="20"
               height="20"
@@ -65,23 +59,22 @@ export default function PostCard({
                 clipRule="evenodd"
               ></path>
             </svg>
-          ) : (
-            <Heart
-              width={20}
-              height={20}
-              onClick={() => likeDislike("1")}
-              className="cursor-pointer"
-            />
-          )}
+          ) : ( */}
+          <Heart
+            width={20}
+            height={20}
+            // onClick={() => likeDislike("1")}
+            className="cursor-pointer"
+          />
+          {/* )} */}
 
           <AddComment post={post} />
-          <ShareModal url={`${Env.APP_URL}/post/${post.id}`} />
-        </div> */}
+          {/* <ShareModal url={`${Env.APP_URL}/post/${post.id}`} /> */}
+        </div>
         <div className="mt-2">
-          <span className="font-light">Replies</span>
           <span className="font-light ml-3"> Likes</span>
-          {/* <span className="font-light">{post.comment_count} Replies</span>
-          <span className="font-light ml-3">{post.like_count} Likes</span> */}
+          <span className="font-light ml-3">{post.comment_count} Replies</span>
+          {/* <span className="font-light ml-3">{post.like_count} Likes</span> */}
         </div>
       </div>
     </div>
