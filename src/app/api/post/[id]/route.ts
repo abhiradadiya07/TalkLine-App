@@ -80,11 +80,7 @@ export async function DELETE(
   if (!post) {
     return NextResponse.json({ status: 400, message: "Bad Request" });
   }
-  // * remove the file
-  // const dir = join(process.cwd(), "public", "/uploads");
-  // const path = dir + "/" + post?.image;
-  // rmSync(path, { force: true });
-   //remove image
+  // * remove image
    if (post.image !== "" && post.image !== null) {
     const dir = join(process.cwd(), "public", "/uploads");
     const path = dir + "/" + post?.image;

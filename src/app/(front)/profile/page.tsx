@@ -28,7 +28,7 @@ export default async function Profile() {
           />
         </div>
         <div>
-          <h1 className="text-2xl font-bold ">{session?.user ?.name}</h1>
+          <h1 className="text-2xl font-bold ">{session?.user?.name}</h1>
           <p className="text-md text-orange-300 ">@{session?.user?.username}</p>
           <h1 className="text-xl">{session?.user?.email}</h1>
         </div>
@@ -59,7 +59,6 @@ export default async function Profile() {
             <div className="mt-5">
               {comments &&
                 comments.map((item) => (
-                  // <CommentCard comment={item} isAuthCard={true} />
                   <CommentCard comment={item} key={item.id} />
                 ))}
 
