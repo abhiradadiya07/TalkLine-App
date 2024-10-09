@@ -34,5 +34,14 @@ type PostType = {
   image?:string;
   comment_count : number;
   user: User;
-  createdAt:string
+  created_at:string
 }
+
+type CommentType = {
+  id: number;
+  user_id: number;
+  post_id: number;
+  content: string;
+  created_at: string;
+  user: User;
+};

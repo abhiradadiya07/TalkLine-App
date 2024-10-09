@@ -19,7 +19,7 @@ export default function UserPostBar({
       <div className="flex ml-2 justify-between items-start w-full">
         <p className="font-bold">{post.user.name}</p>
         <div className="flex">
-          <span className="mr-4 text-sm">{formateDate(post.createdAt)}</span>
+          <span className="mr-4 text-sm">{formateDate(post.created_at)}</span>
           {/* 
           {isAuthPost ? (
             <DeletePostBtn post={post} />

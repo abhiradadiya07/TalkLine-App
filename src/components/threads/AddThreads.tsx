@@ -79,7 +79,7 @@ export default function AddThread() {
   };
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 border-b pb-3">
       {previewUrl ? (
         <div className="mb-5">
           <ImagePreviewCard image={previewUrl} callback={removePreview} />

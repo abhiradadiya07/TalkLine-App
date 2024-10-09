@@ -66,18 +66,18 @@ export async function fetchUserPosts() {
 //   return response!.data;
 // }
 
-// // * display post
-// export async function fetchPost(id: number) {
-//   const res = await fetch(`${Env.APP_URL}/api/post/${id}`, {
-//     cache: "no-cache",
-//     headers: headers(),
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fecth posts");
-//   }
-//   const response = await res.json();
-//   return response?.data;
-// }
+// * display post
+export async function fetchSinglePost(id: number) {
+  const res = await fetch(`${Env.APP_URL}/api/post/${id}`, {
+    cache: "no-cache",
+    headers: headers(),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  const response = await res.json();
+  return response?.data;
+}
 
 // // * Fetch user Notifications
 // export async function fetchNotifications() {
