@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import React from "react";
 
 import { getServerSession } from "next-auth";
@@ -6,15 +7,16 @@ import DynamicNavBar from "@/components/common/DynamicNavBar";
 import UserProfileAvatar from "@/components/common/UserProfileAvatar";
 import {
   authOptions,
-  CustomSession,
+  CustomSession
 } from "@/app/api/auth/[...nextauth]/option";
-import { fetchUserPosts } from "@/lib/serverMethods";
+import { fetchUserComments, fetchUserPosts } from "@/lib/serverMethods";
 import PostCard from "@/components/common/PostCard";
+import CommentCard from "@/components/common/CommentCard";
 
 export default async function Profile() {
   const session: CustomSession | null = await getServerSession(authOptions);
   const posts: Array<PostType> | [] = await fetchUserPosts();
-  //   const comments: Array<CommentType> | [] = await fetchUserComments();
+  const comments: Array<CommentType> | [] = await fetchUserComments();
   return (
     <div>
       <DynamicNavBar title="Profile" />
@@ -26,7 +28,7 @@ export default async function Profile() {
           />
         </div>
         <div>
-          <h1 className="text-2xl font-bold ">{session?.user?.name}</h1>
+          <h1 className="text-2xl font-bold ">{session?.user ?.name}</h1>
           <p className="text-md text-orange-300 ">@{session?.user?.username}</p>
           <h1 className="text-xl">{session?.user?.email}</h1>
         </div>
@@ -45,25 +47,27 @@ export default async function Profile() {
           <TabsContent value="post">
             <div className="mt-5">
               {posts &&
-                // posts.map((item) => <PostCard post={item} isAuthPost={true} />)}
-                posts.map((item) => <PostCard post={item} key={item.id} />)}
+                posts.map((item) => (
+                  <PostCard post={item} key={item.id} isAuthPost={true} />
+                ))}
               {posts && posts.length < 1 && (
                 <h1 className="text-center mt-5">No Post found</h1>
               )}
             </div>
           </TabsContent>
-          {/* <TabsContent value="comment">
+          <TabsContent value="comment">
             <div className="mt-5">
               {comments &&
                 comments.map((item) => (
-                  <CommentCard comment={item} isAuthCard={true} />
+                  // <CommentCard comment={item} isAuthCard={true} />
+                  <CommentCard comment={item} key={item.id} />
                 ))}
 
               {comments && comments.length < 1 && (
                 <h1 className="text-center mt-5">No Comment found</h1>
               )}
             </div>
-          </TabsContent> */}
+          </TabsContent>
         </Tabs>
       </div>
     </div>

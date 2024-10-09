@@ -13,7 +13,7 @@ export async function fetchPosts() {
     headers: headers(),
   });
   if (!res.ok) {
-    throw new Error("Failed to fecth posts");
+    throw new Error("Failed to fetch posts");
   }
   const response = await res.json();
 
@@ -28,7 +28,7 @@ export async function fetchUsers() {
     },
   });
   if (!res.ok) {
-    throw new Error("Failed to fecth posts");
+    throw new Error("Failed to fetch posts");
   }
   const response = await res.json();
   return response?.data;
@@ -44,27 +44,27 @@ export async function fetchUserPosts() {
     },
   });
   if (!res.ok) {
-    throw new Error("Failed to fecth posts");
+    throw new Error("Failed to fetch posts");
   }
   const response = await res.json();
   return response!.data;
 }
 
-// // * Fetch user comments
-// export async function fetchUserComments() {
-//   const res = await fetch(`${Env.APP_URL}/api/user/comment`, {
-//     headers: headers(),
-//     cache: "default",
-//     next: {
-//       revalidate: 3600,
-//     },
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fecth posts");
-//   }
-//   const response = await res.json();
-//   return response!.data;
-// }
+// * Fetch user comments
+export async function fetchUserComments() {
+  const res = await fetch(`${Env.APP_URL}/api/user/comment`, {
+    headers: headers(),
+    cache: "no-cache",
+    next: {
+      revalidate: 3600,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  const response = await res.json();
+  return response!.data;
+}
 
 // * display post
 export async function fetchSinglePost(id: number) {
@@ -86,7 +86,7 @@ export async function fetchSinglePost(id: number) {
 //     cache: "no-cache",
 //   });
 //   if (!res.ok) {
-//     throw new Error("Failed to fecth posts");
+//     throw new Error("Failed to fetch posts");
 //   }
 //   const response = await res.json();
 //   return response?.data;
@@ -98,7 +98,7 @@ export async function fetchSinglePost(id: number) {
 //     cache: "no-cache",
 //   });
 //   if (!res.ok) {
-//     throw new Error("Failed to fecth posts");
+//     throw new Error("Failed to fetch posts");
 //   }
 //   const response = await res.json();
 //   return response?.data;
@@ -111,7 +111,7 @@ export async function fetchSinglePost(id: number) {
 //     headers: headers(),
 //   });
 //   if (!res.ok) {
-//     throw new Error("Failed to fecth posts");
+//     throw new Error("Failed to fetch posts");
 //   }
 
 //   const response = await res.json();

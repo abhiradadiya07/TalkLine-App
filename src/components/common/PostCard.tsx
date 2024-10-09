@@ -8,12 +8,12 @@ import Link from "next/link";
 
 export default function PostCard({
   post,
+  isAuthPost,
   noRedirect
-}: //   isAuthPost,
-{
+}: {
   post: PostType;
   noRedirect?: boolean;
-  //   isAuthPost?: boolean;
+  isAuthPost?: boolean;
 }) {
   //   const [isLiked, setIsLiked] = useState<string>("");
   //   const likeDislike = (status: string) => {
@@ -35,8 +35,7 @@ export default function PostCard({
 
   return (
     <div className="pb-3 mb-3 border-b">
-      {/* <UserPostBar post={post} isAuthPost={isAuthPost} /> */}
-      <UserPostBar post={post} />
+      <UserPostBar post={post} isAuthPost={isAuthPost} />
       <div className="ml-12 mt-[-10px]">
         <Link href={noRedirect == true ? "#" : `/post/${post.id}`}>
           {post.content}

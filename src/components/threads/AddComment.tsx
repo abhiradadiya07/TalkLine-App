@@ -33,7 +33,7 @@ export default function AddComment({ post }: { post: PostType }) {
       .post("/api/comment", {
         content: content,
         post_id: post.id.toString(),
-        toUserId: post.user_id
+        // toUser_Id: post.user_id
       })
       .then((res) => {
         const response = res.data;

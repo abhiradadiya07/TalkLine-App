@@ -2,14 +2,14 @@ import React from "react";
 import UserAvatar from "./UserAvatar";
 import { MoreHorizontal } from "lucide-react";
 import { formateDate } from "@/lib/utils";
-// import DeletePostBtn from "../threads/DeletePostBtn";
+import DeletePostBtn from "../threads/DeletePostBtn";
 
 export default function UserPostBar({
   post,
-}: // isAuthPost,
-{
+  isAuthPost
+}: {
   post: PostType;
-  // isAuthPost?: boolean;
+  isAuthPost?: boolean;
 }) {
   return (
     <div className="flex">
@@ -20,12 +20,12 @@ export default function UserPostBar({
         <p className="font-bold">{post.user.name}</p>
         <div className="flex">
           <span className="mr-4 text-sm">{formateDate(post.created_at)}</span>
-          {/* 
+
           {isAuthPost ? (
             <DeletePostBtn post={post} />
-          ) : ( */}
-          <MoreHorizontal height={22} width={22} />
-          {/* )} */}
+          ) : (
+            <MoreHorizontal height={22} width={22} />
+          )}
         </div>
       </div>
     </div>

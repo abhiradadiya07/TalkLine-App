@@ -11,7 +11,7 @@ export default function ImagePreviewCard({
 }) {
   return (
     <div
-      className="w-full h-72 bg-cover"
+      className="w-full h-72 bg-contain"
       style={{
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",

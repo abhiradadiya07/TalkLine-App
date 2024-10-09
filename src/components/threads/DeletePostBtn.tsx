@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,7 +9,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import axios from "axios";
 import { Trash2 } from "lucide-react";
@@ -19,28 +19,31 @@ import { useToast } from "@/hooks/use-toast";
 export default function DeletePostBtn({ post }: { post: PostType }) {
   const { toast } = useToast();
   const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
   const deletePost = () => {
+    setLoading(true);
     axios
       .delete(`/api/post/${post.id}`)
       .then((res) => {
+        setLoading(false);
         const response = res.data;
-
         if (response.status == 401) {
           toast({
             title: "Error",
             description: "Un-Authorized",
-            className: "bg-red-400",
+            className: "bg-red-400"
           });
         } else if (response.status == 200) {
           toast({
             title: "Success",
             description: response.message,
-            className: "bg-green-400",
+            className: "bg-green-400"
           });
           router.refresh();
         }
       })
       .catch((err) => {
+        setLoading(false);
         console.log("The error is", err);
       });
   };
@@ -64,7 +67,11 @@ export default function DeletePostBtn({ post }: { post: PostType }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-400" onClick={deletePost}>
+          <AlertDialogAction
+            className="bg-red-400"
+            onClick={deletePost}
+            disabled={loading}
+          >
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>
