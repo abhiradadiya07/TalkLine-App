@@ -31,14 +31,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ status: 401, message: "Un-Authorized" });
     }
     const data = await request.json();
-    
     vine.errorReporter = () => new CustomErrorReporter();
-    console.log(data.toUser_id,"**********************");
-
     const validator = vine.compile(commentSchema);
     const payload = await validator.validate(data);
-    console.log(payload.toUser_id,"**********************");
-    
     // * Increase the post comment count
     await prisma.post.update({
       where: {
@@ -52,18 +47,6 @@ export async function POST(request: NextRequest) {
     });
 
     // * Add Notification
-    // try {
-    //   await prisma.notification.create({
-    //     data: {
-    //       user_id: Number(session?.user?.id),
-    //       toUser_id: Number(payload.toUser_id),
-    //       content: "Commented on your post",
-    //     },
-    //   });
-    // } catch (error) {
-    //   console.log("The error is", error);
-    // }
-
     await prisma.notification.create({
        data: {
           user_id: Number(session?.user?.id),

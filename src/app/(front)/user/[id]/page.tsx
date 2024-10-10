@@ -8,6 +8,7 @@ import { fetchUser } from "@/lib/serverMethods";
 
 export default async function ShowUser({ params }: { params: { id: number } }) {
   const user: ShowUsers | null = await fetchUser(params.id);
+  console.log(user);
   return (
     <div>
       <DynamicNavBar title="Profile" />

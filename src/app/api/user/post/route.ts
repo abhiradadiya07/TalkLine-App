@@ -18,11 +18,11 @@ export async function GET() {
           username: true,
         },
       },
-    //   Likes: {
-    //     where: {
-    //       user_id: Number(session?.user?.id),
-    //     },
-    //   },
+      Likes: {
+        where: {
+          user_id: Number(session?.user?.id),
+        },
+      },
     },
     where: {
       user_id: Number(session?.user?.id),

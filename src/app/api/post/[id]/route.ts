@@ -45,13 +45,13 @@ export async function GET(
             //   image: true,
             },
           },
+        },  
+      },
+      Likes: {
+        where: {
+          user_id: Number(session?.user?.id),
         },
       },
-    //   Likes: {
-    //     where: {
-    //       user_id: Number(session?.user?.id),
-    //     },
-    //   },
     },
   });
 

@@ -30,6 +30,11 @@ export async function GET(
               username: true,
             },
           },
+          Likes: {
+            where: {
+              user_id: Number(params.id),
+            },
+          },
         },
       },
 
@@ -44,6 +49,7 @@ export async function GET(
           },
         },
       },
+      
     },
   });
 
