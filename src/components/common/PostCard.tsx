@@ -29,8 +29,8 @@ export default function PostCard({
           <SharePost url={`${Env.APP_URL}/post/${post.id}`} />
         </div>
         <div className="mt-2">
-          <span className="font-light">{post.likes_count} Likes</span>
-          <span className="font-light ml-3">{post.comment_count} Replies</span>
+          <span className="font-semibold">{post.likes_count} Likes</span>
+          <span className="font-semibold ml-3">{post.comment_count} Replies</span>
         </div>
       </div>
     </div>

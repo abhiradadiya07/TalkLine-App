@@ -62,58 +62,60 @@ const CommentsAdd = ({ post }: { post: PostType }) => {
   };
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <MessageCircle width={20} height={20} className="cursor-pointer" />
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Add Comment</AlertDialogTitle>
-          <AlertDialogDescription>
-            <div className="mt-5">
-              <div className="flex">
-                <div>
-                  <UserAvatar name={post.user.name} image="" />
-                </div>
-                <div className="flex ml-2 justify-between items-start w-full">
-                  <p className="font-bold">{post.user.name}</p>
-                  <div className="flex">
-                    <span className="mr-4 text-sm">
-                      {formateDate(post.created_at)}
-                    </span>
+    <div className="mx-10">
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <MessageCircle width={20} height={20} className="cursor-pointer" />
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Add Comment</AlertDialogTitle>
+            <AlertDialogDescription>
+              <div className="mt-5">
+                <div className="flex">
+                  <div>
+                    <UserAvatar name={post.user.name} image="" />
+                  </div>
+                  <div className="flex ml-2 justify-between items-start w-full">
+                    <p className="font-bold text-black dark:text-white text-base">{post.user.name}</p>
+                    <div className="flex">
+                      <span className="mr-4 text-sm text-white">
+                        {formateDate(post.created_at)}
+                      </span>
+                    </div>
                   </div>
                 </div>
+                <div className="ml-12 -mt-2">
+                  {post?.image ? <ImageViewer image={post.image} /> : <></>}
+                </div>
+                <div className="ml-12 text-black dark:text-white">{post.content}</div>
               </div>
-              <div className="ml-12 -mt-2">
-                {post?.image ? <ImageViewer image={post.image} /> : <></>}
+              <div className="mt-5 flex justify-start items-start">
+                <UserAvatar
+                  name={data?.user?.name ?? "A"}
+                  image={data?.user?.image ?? ""}
+                />
+                <textarea
+                  className="w-full h-24 text-md p-2 bg-background resize-none border rounded-lg placeholder:font-normal ml-2 text-white"
+                  name="content"
+                  id="content"
+                  placeholder="Type your comment here..."
+                  onChange={(e) => setContent(e.target.value)}
+                  value={content}
+                ></textarea>
               </div>
-              <div className="ml-12 ">{post.content}</div>
-            </div>
-            <div className="mt-5 flex justify-start items-start">
-              <UserAvatar
-                name={data?.user?.name ?? "A"}
-                image={data?.user?.image ?? ""}
-              />
-              <textarea
-                className="w-full h-24 text-md p-2 bg-background resize-none border rounded-lg placeholder:font-normal ml-2"
-                name="content"
-                id="content"
-                placeholder="Type your comment here..."
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
-              ></textarea>
-            </div>
-            <span className="text-red-400 font-bold ml-12">
-              {errors.content}
-            </span>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={submit}>Comment</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+              <span className="text-red-400 font-bold ml-12">
+                {errors.content}
+              </span>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={submit}>Add Comment</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   );
 };
 

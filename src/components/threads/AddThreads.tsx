@@ -88,7 +88,7 @@ export default function AddThread() {
         <></>
       )}
       <div className="flex justify-start items-start">
-        <UserAvatar name={data?.user?.name ?? "T"} image="" />
+        <UserAvatar name={data?.user?.name ?? "A"} image="" />
         <textarea
           className="w-full h-24 text-md p-2 bg-muted outline-none  resize-none rounded-lg placeholder:font-normal ml-2"
           placeholder="Type something great...."

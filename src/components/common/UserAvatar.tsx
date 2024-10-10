@@ -3,15 +3,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export default function UserAvatar({
   name,
-  image,
+  image
 }: {
   name: string;
   image?: string;
 }) {
   return (
-    <Avatar className="">
+    <Avatar>
       <AvatarImage src={image} className="object-cover" />
-      <AvatarFallback>{name[0].toUpperCase()}</AvatarFallback>
+      <AvatarFallback className="font-semibold">
+        {name[0].toUpperCase()}
+      </AvatarFallback>
     </Avatar>
   );
 }

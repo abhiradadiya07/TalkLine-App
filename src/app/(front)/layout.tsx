@@ -19,7 +19,7 @@ export default function FrontLayout({
       attribute="class"
       defaultTheme="system"
       enableSystem
-      disableTransitionOnChange
+      disableTransitionOnChange 
     >
       <CustomProvider>
         <BaseComponent>{children}</BaseComponent>

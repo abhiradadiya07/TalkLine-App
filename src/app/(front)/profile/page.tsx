@@ -38,7 +38,7 @@ export default async function Profile() {
         </div>
         <div>
           <h1 className="text-2xl font-bold ">{session?.user?.name}</h1>
-          <p className="text-md text-orange-300 ">@{session?.user?.username}</p>
+          <p className="text-lg dark:text-orange-400 text-orange-700 font-bold">@{session?.user?.username}</p>
           <h1 className="text-xl">{session?.user?.email}</h1>
         </div>
       </div>

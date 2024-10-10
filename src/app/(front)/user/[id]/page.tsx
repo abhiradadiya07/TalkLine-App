@@ -18,7 +18,9 @@ export default async function ShowUser({ params }: { params: { id: number } }) {
         </div>
         <div>
           <h1 className="text-2xl font-bold ">{user?.name}</h1>
-          <p className="text-md text-orange-300 ">@{user?.username}</p>
+          <p className="text-lg dark:text-orange-400 text-orange-700 font-bold ">
+            @{user?.username}
+          </p>
           <h1 className="text-xl">{user?.email}</h1>
         </div>
       </div>

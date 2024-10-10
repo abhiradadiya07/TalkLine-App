@@ -17,7 +17,7 @@ export default function SignOutBtn() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="sm" className="mr-5">
+        <Button size={"lg"} className="mr-5 text-lg">
           Sign Out
         </Button>
       </AlertDialogTrigger>

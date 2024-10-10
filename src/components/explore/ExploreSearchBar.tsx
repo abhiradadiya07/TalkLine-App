@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -16,7 +15,7 @@ export default function ExploreSearchBar() {
       <form onSubmit={submit}>
         <input
           type="search"
-          className="w-full rounded-2xl h-14 p-3 bg-muted"
+          className="w-full rounded-2xl h-14 p-3 dark:bg-muted bg-accent font-semibold"
           placeholder="Search users with their name..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}

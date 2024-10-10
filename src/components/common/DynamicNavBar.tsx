@@ -7,7 +7,7 @@ export default function DynamicNavBar({ title }: { title: string }) {
   const router = useRouter();
   return (
     <div>
-      <div className="flex space-x-10 items-center">
+      <div className="flex space-x-10 items-center mt-4 md:mt-0">
         <MoveLeft onClick={() => router.back()} className="cursor-pointer" />
         <h1 className="text-xl font-bold">{title}</h1>
       </div>
