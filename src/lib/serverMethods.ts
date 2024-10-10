@@ -98,18 +98,16 @@ export async function getNotifications() {
   return response?.data;
 }
 
+// *  explore the users
+export async function searchUser(query: string) {
+  const res = await fetch(`${Env.APP_URL}/api/explore?query=${query}`, {
+    cache: "no-cache",
+    headers: headers(),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
 
-
-// // *  explore the users
-// export async function searchUser(query: string) {
-//   const res = await fetch(`${Env.APP_URL}/api/explore?query=${query}`, {
-//     cache: "no-cache",
-//     headers: headers(),
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch posts");
-//   }
-
-//   const response = await res.json();
-//   return response?.data;
-// }
+  const response = await res.json();
+  return response?.data;
+}

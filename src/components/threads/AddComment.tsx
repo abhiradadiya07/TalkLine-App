@@ -79,12 +79,14 @@ const AddComment = ({ post }: { post: PostType }) => {
                 name={data?.user?.name ?? "R"}
                 image={data?.user?.image ?? ""}
               />
+              <form>
               <textarea
                 className="w-full h-24 text-md p-2 bg-background outline-none resize-none rounded-lg placeholder:font-normal ml-2"
                 placeholder="Type your comment..."
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
               ></textarea>
+              </form>
             </div>
             <span className="text-red-400 font-bold ml-12">
               {errors.content}
