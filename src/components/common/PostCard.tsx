@@ -3,6 +3,9 @@ import ImageViewer from "./ImageViewer";
 import AddComment from "../threads/AddComment";
 import Link from "next/link";
 import React from "react";
+import SharePost from "./SharePost";
+import Env from "@/config/env";
+import { Heart } from "lucide-react";
 
 export default function PostCard({
   post,
@@ -22,7 +25,9 @@ export default function PostCard({
         </Link>
         {post?.image ? <ImageViewer image={post.image} /> : <></>}
         <div className="mt-5 flex items-center space-x-4">
+          <Heart width={20} height={20}/>
           <AddComment post={post} />
+          <SharePost url={`${Env.APP_URL}/post/${post.id}`} />
         </div>
         <div className="mt-2">
           <span className="font-light">0 Likes</span>
