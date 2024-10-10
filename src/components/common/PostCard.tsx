@@ -6,7 +6,6 @@ import React from "react";
 import SharePost from "./SharePost";
 import Env from "@/config/env";
 import LikePost from "../threads/LikePost";
-
 export default function PostCard({
   post,
   isAuthPost,

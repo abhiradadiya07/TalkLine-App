@@ -34,7 +34,7 @@ export default function SharePost({ url }: { url: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <SendHorizonal width={20} height={20} className="ml-3 cursor-pointer" />
+        <SendHorizonal width={19} height={19} className="ml-3 cursor-pointer" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
