@@ -45,3 +45,21 @@ type CommentType = {
   created_at: string;
   user: User;
 };
+
+type ShowUsers ={
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  Post : Array<PostType>|null;
+  Comment : Array<CommentType>|null;
+}
+
+type NotificationType = {
+  id: number;
+  user_id: number;
+  toUser_id: number;
+  content: string;
+  created_at: string;
+  user: User;
+};

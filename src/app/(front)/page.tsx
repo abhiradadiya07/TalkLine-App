@@ -1,4 +1,3 @@
-import Loading from "@/components/common/Loading";
 import PostCard from "@/components/common/PostCard";
 import AddThread from "@/components/threads/AddThreads";
 import { fetchPosts } from "@/lib/serverMethods";
@@ -15,11 +14,11 @@ export default async function Home() {
           width={50}
           height={50}
           alt="Logo"
-          className="hidden md:block"
+          className="hidden md:block" 
         />
       </div>
       <AddThread />
-      <Suspense fallback={<Loading />}>
+      <Suspense>
         <div className="mt-10">
           {posts.map((item) => (
             <PostCard post={item} key={item.id} />

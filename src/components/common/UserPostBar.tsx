@@ -4,7 +4,7 @@ import { MoreHorizontal } from "lucide-react";
 import { formateDate } from "@/lib/utils";
 import DeletePostBtn from "../threads/DeletePostBtn";
 
-export default function UserPostBar({
+export default async function UserPostBar({
   post,
   isAuthPost
 }: {
@@ -20,7 +20,6 @@ export default function UserPostBar({
         <p className="font-bold">{post.user.name}</p>
         <div className="flex">
           <span className="mr-4 text-sm">{formateDate(post.created_at)}</span>
-
           {isAuthPost ? (
             <DeletePostBtn post={post} />
           ) : (

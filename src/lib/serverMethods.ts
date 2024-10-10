@@ -16,8 +16,7 @@ export async function fetchPosts() {
     throw new Error("Failed to fetch posts");
   }
   const response = await res.json();
-
-  return response!.data;
+  return response?.data;
 }
 
 export async function fetchUsers() {
@@ -34,14 +33,11 @@ export async function fetchUsers() {
   return response?.data;
 }
 
-// // * Fetch user posts
+// * Fetch user posts
 export async function fetchUserPosts() {
   const res = await fetch(`${Env.APP_URL}/api/user/post`, {
     headers: headers(),
     cache: "no-cache",
-    next: {
-      revalidate: 3600,
-    },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
@@ -55,9 +51,6 @@ export async function fetchUserComments() {
   const res = await fetch(`${Env.APP_URL}/api/user/comment`, {
     headers: headers(),
     cache: "no-cache",
-    next: {
-      revalidate: 3600,
-    },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
@@ -79,30 +72,33 @@ export async function fetchSinglePost(id: number) {
   return response?.data;
 }
 
-// // * Fetch user Notifications
-// export async function fetchNotifications() {
-//   const res = await fetch(`${Env.APP_URL}/api/notifications`, {
-//     headers: headers(),
-//     cache: "no-cache",
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch posts");
-//   }
-//   const response = await res.json();
-//   return response?.data;
-// }
+// * Show user with their posts and comments
+export async function fetchUser(id: number) {
+  const res = await fetch(`${Env.APP_URL}/api/user/${id}`, {
+    cache: "no-cache",
+    headers: headers(),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  const response = await res.json();
+  return response?.data;
+}
 
-// // * Show user with their posts and comments
-// export async function fetchUser(id: number) {
-//   const res = await fetch(`${Env.APP_URL}/api/user/${id}`, {
-//     cache: "no-cache",
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch posts");
-//   }
-//   const response = await res.json();
-//   return response?.data;
-// }
+// * Fetch user Notifications
+export async function getNotifications() {
+  const res = await fetch(`${Env.APP_URL}/api/notifications`, {
+    headers: headers(),
+    cache: "no-cache",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  const response = await res.json();
+  return response?.data;
+}
+
+
 
 // // *  explore the users
 // export async function searchUser(query: string) {

@@ -1,7 +1,7 @@
 import React from "react";
 import UserAvatar from "./UserAvatar";
 import { Button } from "../ui/button";
-// import Link from "next/link";
+import Link from "next/link";
 
 export default function UserListCard({ user }: { user: User }) {
   return (
@@ -13,9 +13,9 @@ export default function UserListCard({ user }: { user: User }) {
             <strong className="text-md font-bold ml-2">{user.name}</strong>
             <span className="ml-2 font-light text-xs">@{user.username}</span>
           </div>
-          {/* <Link href={`/user/${user.id}`}> */}
-          <Button size="sm">view</Button>
-          {/* </Link> */}
+          <Link href={`/user/${user.id}`}>
+            <Button size="sm">view</Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 "use client";
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,7 +8,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import { signOut } from "next-auth/react";
 import { Button } from "../ui/button";

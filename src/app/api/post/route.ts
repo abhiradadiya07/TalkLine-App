@@ -15,6 +15,7 @@ export async function GET() {
   if (!session) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
   }
+  
   const posts = await prisma.post.findMany({
     include: {
       user: {
@@ -35,7 +36,6 @@ export async function GET() {
       id: "desc",
     },
   });
-
   return NextResponse.json({
     status: 200,
     data: posts,
