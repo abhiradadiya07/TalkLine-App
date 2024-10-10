@@ -5,6 +5,14 @@ import UserProfileAvatar from "@/components/common/UserProfileAvatar";
 import PostCard from "@/components/common/PostCard";
 import CommentCard from "@/components/common/CommentCard";
 import { fetchUser } from "@/lib/serverMethods";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Explore Users",
+  description: "Find your friend and chat with theme.",
+  openGraph: {
+    title: "Search your Friends"
+  }
+};
 
 export default async function ShowUser({ params }: { params: { id: number } }) {
   const user: ShowUsers | null = await fetchUser(params.id);

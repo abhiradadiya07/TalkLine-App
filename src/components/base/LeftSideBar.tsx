@@ -11,7 +11,7 @@ export default function LeftSidebar() {
         <Link href={"/"}>
           <ThemeLogo width={50} height={50}/>
         </Link>
-        <h1 className="font-bold text-2xl ml-2">Threads</h1>
+        <h1 className="font-bold text-2xl ml-2">TalkLine</h1>
       </div>
       <SideBarLinks />
     </div>

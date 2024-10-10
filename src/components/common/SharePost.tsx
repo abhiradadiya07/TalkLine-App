@@ -48,8 +48,8 @@ export default function SharePost({ url }: { url: string }) {
             <div className="flex items-center space-x-5 mt-5">
               <FacebookShareButton
                 url={url}
-                quote={"Threads Post."}
-                hashtag={"#thraeds"}
+                quote={"TalkLine Post."}
+                hashtag={"#talkline"}
               >
                 <FacebookIcon size={32} round />
               </FacebookShareButton>

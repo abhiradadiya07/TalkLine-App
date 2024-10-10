@@ -5,11 +5,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Auth Page",
-  description: "The Threads app Auth pages.",
+  description: "The TalkLine App Auth pages."
 };
 
 export default function LoginLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {

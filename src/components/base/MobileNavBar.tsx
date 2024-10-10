@@ -26,7 +26,7 @@ export default function MobileNavBar() {
               <SheetTitle>
                 <div className="flex justify-start items-center">
                   <ThemeLogo height={50} width={50} />
-                  <h1 className="font-bold text-xl ml-2">Threads</h1>
+                  <h1 className="font-bold text-xl ml-2">TalkLine</h1>
                 </div>
               </SheetTitle>
               <SheetDescription>

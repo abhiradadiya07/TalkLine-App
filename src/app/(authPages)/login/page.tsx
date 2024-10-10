@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -10,6 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import ThemeLogo from "@/components/base/ThemeLogo";
 const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -55,11 +55,11 @@ const Login = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <div className="h-screen w-screen flex justify-center items-center">
-        <div className="w-full md:w-1/3 mx-2 bg-muted p-6 rounded-lg">
+        <div className="w-full md:w-1/3 mx-2 bg-muted p-6 rounded-lg border-4">
           <div className="flex justify-center">
-            <Image src="/images/logo.svg" width={50} height={50} alt="Logo" />
+            <ThemeLogo width={50} height={50} />
           </div>
           {searchParams.get("message") ? (
             <div className="bg-green-400 p-2 rounded-lg my-2 text-center">
@@ -69,10 +69,10 @@ const Login = () => {
           ) : (
             <></>
           )}
-          <h1 className="text-2xl font-bo ld">Login</h1>
-          <p>Welcome</p>
+          <h1 className="text-2xl font-bold text-center mt-4">Login</h1>
+          <p>Welcome to TalkLine</p>
           <form onSubmit={submit}>
-            <div className="mt-5">
+            <div className="mt-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 type="email"

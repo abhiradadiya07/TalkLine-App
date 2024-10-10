@@ -2,11 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import ThemeLogo from "@/components/base/ThemeLogo";
 const Register = () => {
   const router = useRouter();
   const [authState, setAuthState] = useState<AuthStateType>({
@@ -14,7 +14,7 @@ const Register = () => {
     password: "",
     name: "",
     username: "",
-    password_confirmation: "",
+    password_confirmation: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -47,14 +47,14 @@ const Register = () => {
   return (
     <div className="">
       <div className="h-screen w-screen flex justify-center items-center">
-        <div className="w-full md:w-1/3 mx-2 bg-muted p-6 rounded-lg">
+        <div className="w-full md:w-1/3 mx-2 bg-muted p-6 rounded-lg border-4">
           <div className="flex justify-center">
-            <Image src="/images/logo.svg" width={50} height={50} alt="Logo" />
+            <ThemeLogo width={50} height={50} />
           </div>
-          <h1 className="text-2xl font-bold">Register</h1>
-          <p>Welcome to threads</p>
+          <h1 className="text-2xl font-bold text-center mt-4">Register</h1>
+          <p>Welcome to TalkLine</p>
           <form onSubmit={submit}>
-            <div className="mt-5">
+            <div className="mt-2">
               <Label htmlFor="name">Name</Label>
               <Input
                 type="text"
