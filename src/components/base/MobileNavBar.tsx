@@ -6,13 +6,12 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
+  SheetTrigger
 } from "@/components/ui/sheet";
-
-import Image from "next/image";
 import Link from "next/link";
 import SideBarLinks from "../common/SideBarLinks";
 import { Menu, User2 } from "lucide-react";
+import ThemeLogo from "./ThemeLogo";
 
 export default function MobileNavBar() {
   return (
@@ -26,12 +25,7 @@ export default function MobileNavBar() {
             <SheetHeader>
               <SheetTitle>
                 <div className="flex justify-start items-center">
-                  <Image
-                    src="/images/logo.svg"
-                    width={50}
-                    height={50}
-                    alt="logo"
-                  />
+                  <ThemeLogo height={50} width={50} />
                   <h1 className="font-bold text-xl ml-2">Threads</h1>
                 </div>
               </SheetTitle>
@@ -43,9 +37,7 @@ export default function MobileNavBar() {
         </Sheet>
       </div>
 
-      <div className="">
-        <Image src="/images/logo.svg" width={30} height={30} alt="Logo" />
-      </div>
+      <ThemeLogo width={30} height={30} />
       <Link href="/profile">
         <User2 height={25} width={25} />
       </Link>

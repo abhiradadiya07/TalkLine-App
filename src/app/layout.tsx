@@ -6,22 +6,22 @@ import { Toaster } from "@/components/ui/toaster";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
-  weight: "100 900",
+  weight: "100 900"
 });
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
-  weight: "100 900",
+  weight: "100 900"
 });
 
 export const metadata: Metadata = {
-  title: "Thread",
-  description: "The Threads app to share your thoughts and much more.",
-  icons: "./favicon.ico",
+  title: "TalkLine",
+  description: "The TalkLine App to share your thoughts and much more.",
+  icons: "./favicon.ico"
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
