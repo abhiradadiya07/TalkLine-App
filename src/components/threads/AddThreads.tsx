@@ -61,14 +61,16 @@ export default function AddThread() {
           toast({
             title: "Success",
             description: response.message,
-            className: "bg-green-500",
+            variant: "default",
+            className: "font-bold"
           });
           router.refresh();
         } else if (response.status == 500) {
           toast({
             title: "Error",
             description: response.message,
-            className: "bg-red-300",
+            variant: "destructive",
+            className: "font-bold"
           });
         }
       })

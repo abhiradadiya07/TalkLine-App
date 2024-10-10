@@ -8,7 +8,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import { Trash2 } from "lucide-react";
 import axios from "axios";
@@ -30,14 +30,16 @@ const DeleteComment = ({ comment }: { comment: CommentType }) => {
           toast({
             title: "Deleted",
             description: response.message,
-            className: "bg-green-500",
+            variant: "default",
+            className: "font-bold"
           });
           router.refresh();
         } else if (response.status === 400) {
           toast({
             title: "Error",
             description: response.message,
-            className: "bg-red-500",
+            variant: "destructive",
+            className: "font-bold"
           });
         }
       })

@@ -48,7 +48,8 @@ const CommentsAdd = ({ post }: { post: PostType }) => {
           toast({
             title: "Success",
             description: response.message,
-            className: "bg-green-500"
+            variant: "default",
+            className: "font-bold"
           });
         } else if (response.status === 400) {
           setErrors(response.errors);
@@ -77,7 +78,9 @@ const CommentsAdd = ({ post }: { post: PostType }) => {
                     <UserAvatar name={post.user.name} image="" />
                   </div>
                   <div className="flex ml-2 justify-between items-start w-full">
-                    <p className="font-bold text-black dark:text-white text-base">{post.user.name}</p>
+                    <p className="font-bold text-black dark:text-white text-base">
+                      {post.user.name}
+                    </p>
                     <div className="flex">
                       <span className="mr-4 text-sm text-white">
                         {formateDate(post.created_at)}
@@ -88,7 +91,9 @@ const CommentsAdd = ({ post }: { post: PostType }) => {
                 <div className="ml-12 -mt-2">
                   {post?.image ? <ImageViewer image={post.image} /> : <></>}
                 </div>
-                <div className="ml-12 text-black dark:text-white">{post.content}</div>
+                <div className="ml-12 text-black dark:text-white">
+                  {post.content}
+                </div>
               </div>
               <div className="mt-5 flex justify-start items-start">
                 <UserAvatar
@@ -96,7 +101,7 @@ const CommentsAdd = ({ post }: { post: PostType }) => {
                   image={data?.user?.image ?? ""}
                 />
                 <textarea
-                  className="w-full h-24 text-md p-2 bg-background resize-none border rounded-lg placeholder:font-normal ml-2 text-white"
+                  className="w-full h-24 text-md p-2 bg-background resize-none border rounded-lg placeholder:font-normal ml-2 dark:text-white text-black"
                   name="content"
                   id="content"
                   placeholder="Type your comment here..."

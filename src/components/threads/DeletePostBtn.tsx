@@ -31,13 +31,15 @@ export default function DeletePostBtn({ post }: { post: PostType }) {
           toast({
             title: "Error",
             description: "Un-Authorized",
-            className: "bg-red-400"
+            variant: "destructive",
+            className: "font-bold"
           });
         } else if (response.status == 200) {
           toast({
             title: "Success",
             description: response.message,
-            className: "bg-green-400"
+            variant: "default",
+            className: "font-bold"
           });
           router.refresh();
         }

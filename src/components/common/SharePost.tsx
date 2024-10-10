@@ -6,7 +6,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
 import { Copy, SendHorizonal } from "lucide-react";
 import {
@@ -17,7 +17,7 @@ import {
   LineShareButton,
   LinkedinIcon,
   EmailShareButton,
-  EmailIcon,
+  EmailIcon
 } from "next-share";
 import { useToast } from "@/hooks/use-toast";
 
@@ -28,7 +28,8 @@ export default function SharePost({ url }: { url: string }) {
     toast({
       title: "Copied!",
       description: "Url Copied successfully!",
-      className: "bg-green-500",
+      variant: "default",
+      className: "font-bold"
     });
   };
   return (
@@ -43,7 +44,7 @@ export default function SharePost({ url }: { url: string }) {
             <div className="flex rounded-md border justify-between p-5 mt-5">
               <strong> {url}</strong>
               <Copy onClick={copyUrl} className="cursor-pointer" />
-            </div>    
+            </div>
             <div className="flex items-center space-x-5 mt-5">
               <FacebookShareButton
                 url={url}

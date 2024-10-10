@@ -15,7 +15,7 @@ const LikePost = ({ post }: { post: PostType }) => {
       .post("/api/like", {
         post_id: post.id,
         toUser_id: post.user_id,
-        status: status,
+        status: status
       })
       .then((res) => {
         const response = res.data;
@@ -23,14 +23,16 @@ const LikePost = ({ post }: { post: PostType }) => {
           toast({
             title: "Success!!",
             description: response.message,
-            className: "bg-green-500",
+            variant: "default",
+            className: "font-bold"
           });
           router.refresh();
         } else if (response.status === 400) {
           toast({
             title: "Failure!!",
             description: response.message,
-            className: "bg-red-500",
+            variant: "destructive",
+            className: "font-bold"
           });
           router.refresh();
         }
@@ -39,7 +41,7 @@ const LikePost = ({ post }: { post: PostType }) => {
         console.log(err);
       });
   };
-  
+
   return (
     <div>
       {post.Likes.length > 0 || isLiked == "1" ? (
