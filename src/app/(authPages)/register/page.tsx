@@ -7,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import ThemeLogo from "@/components/base/ThemeLogo";
+import { toast } from "@/hooks/use-toast";
 const Register = () => {
   const router = useRouter();
   const [authState, setAuthState] = useState<AuthStateType>({
