@@ -5,11 +5,10 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import ThemeLogo from "@/components/base/ThemeLogo";  
+import ThemeLogo from "@/components/base/ThemeLogo";
 const Login = () => {
   const router = useRouter();
   const { status } = useSession();
@@ -19,20 +18,11 @@ const Login = () => {
     email: "",
     password: ""
   });
-  const [message, setMessage] = useState<string | null>(null);
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/");
     }
   }, [status]);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const msg = searchParams.get("message");
-    if (msg) {
-      setMessage(msg);
-    }
-  }, []);
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAuthState({ ...authState, [e.target.name]: e.target.value });
   };
@@ -69,12 +59,6 @@ const Login = () => {
           <div className="flex justify-center">
             <ThemeLogo width={50} height={50} />
           </div>
-          {message && (
-            <div className="bg-green-400 p-2 rounded-lg my-2 text-center">
-              <strong>Success!!</strong>
-              <span className="ml-2">{message}</span>
-            </div>
-          )}
           <h1 className="text-2xl font-bold text-center mt-4">Login</h1>
           <p>Welcome to TalkLine</p>
           <form onSubmit={submit}>
