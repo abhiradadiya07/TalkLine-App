@@ -33,7 +33,7 @@ const Register = () => {
         setLoading(false);
         const response = res.data;
         if (response.status === 200) {
-          router.push(`/login?message=${response.message}`);
+          router.push(`/login`);
         } else if (response.status === 400) {
           setErrors(response.errors);
         }
