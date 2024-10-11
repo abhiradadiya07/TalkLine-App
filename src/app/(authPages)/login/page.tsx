@@ -26,7 +26,6 @@ const Login = () => {
     }
   }, [status]);
 
-  // Handle the client-side useSearchParams only after rendering
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const msg = searchParams.get("message");
