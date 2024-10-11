@@ -40,6 +40,8 @@ export const authOptions: AuthOptions = {
     }) {
       // Send properties to the client, like an access_token and user id from a provider.
       session.user = token.user as CustomUser;
+      console.log(session.user,"###########");
+      console.log("session",session);
       return session;
     },
   },
@@ -51,7 +53,6 @@ export const authOptions: AuthOptions = {
         email: {},
         password: {},
       },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
         const user = await prisma.user.findUnique({
@@ -67,6 +68,7 @@ export const authOptions: AuthOptions = {
         });
 
         if (user) {
+          console.log(user,"******************");
           return { ...user, id: user.id.toString() };
         } else {
           return null;
