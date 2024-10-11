@@ -1,16 +1,13 @@
 import { headers } from "next/headers";
-// import { wait } from "./utils";
-
 import Env from "@/config/env";
 
-
 export async function fetchPosts() {
-// export async function fetchPosts(page: number) {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/post`, 
     {
-//   const res = await fetch(`${Env.APP_URL}/api/post?page=${page}`, {
     cache: "no-cache",
-    headers: headers(),
+    headers: customHeaders,
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
@@ -20,11 +17,11 @@ export async function fetchPosts() {
 }
 
 export async function fetchUsers() {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/user`, {
-    headers: headers(),
-    next: {
-      revalidate: 3600,
-    },
+    cache: "no-cache",
+    headers: customHeaders,
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
@@ -35,8 +32,10 @@ export async function fetchUsers() {
 
 // * Fetch user posts
 export async function fetchUserPosts() {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/user/post`, {
-    headers: headers(),
+    headers: customHeaders,
     cache: "no-cache",
   });
   if (!res.ok) {
@@ -48,8 +47,10 @@ export async function fetchUserPosts() {
 
 // * Fetch user comments
 export async function fetchUserComments() {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/user/comment`, {
-    headers: headers(),
+    headers: customHeaders,
     cache: "no-cache",
   });
   if (!res.ok) {
@@ -61,9 +62,11 @@ export async function fetchUserComments() {
 
 // * display post
 export async function fetchSinglePost(id: number) {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/post/${id}`, {
     cache: "no-cache",
-    headers: headers(),
+    headers: customHeaders,
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
@@ -74,9 +77,11 @@ export async function fetchSinglePost(id: number) {
 
 // * Show user with their posts and comments
 export async function fetchUser(id: number) {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/user/${id}`, {
     cache: "no-cache",
-    headers: headers(),
+    headers: customHeaders,
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
@@ -87,8 +92,10 @@ export async function fetchUser(id: number) {
 
 // * Fetch user Notifications
 export async function getNotifications() {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/notifications`, {
-    headers: headers(),
+    headers: customHeaders,
     cache: "no-cache",
   });
   if (!res.ok) {
@@ -100,9 +107,11 @@ export async function getNotifications() {
 
 // *  explore the users
 export async function searchUser(query: string) {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const res = await fetch(`${Env.APP_URL}/api/explore?query=${query}`, {
     cache: "no-cache",
-    headers: headers(),
+    headers: customHeaders,
   });
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
