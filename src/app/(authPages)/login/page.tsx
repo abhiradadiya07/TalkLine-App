@@ -9,26 +9,35 @@ import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import ThemeLogo from "@/components/base/ThemeLogo";
+import ThemeLogo from "@/components/base/ThemeLogo";  
 const Login = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { status } = useSession();
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<AuthErrorType>();
   const [authState, setAuthState] = useState<AuthStateType>({
     email: "",
-    password: "",
+    password: ""
   });
+  const [message, setMessage] = useState<string | null>(null);
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/");
     }
   }, [status]);
 
+  // Handle the client-side useSearchParams only after rendering
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const msg = searchParams.get("message");
+    if (msg) {
+      setMessage(msg);
+    }
+  }, []);
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAuthState({ ...authState, [e.target.name]: e.target.value });
   };
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -42,7 +51,7 @@ const Login = () => {
             email: authState.email,
             password: authState.password,
             callbackUrl: "/",
-            redirect: true,
+            redirect: true
           });
         } else if (response.status === 400) {
           setErrors(response.errors);
@@ -61,13 +70,11 @@ const Login = () => {
           <div className="flex justify-center">
             <ThemeLogo width={50} height={50} />
           </div>
-          {searchParams.get("message") ? (
+          {message && (
             <div className="bg-green-400 p-2 rounded-lg my-2 text-center">
               <strong>Success!!</strong>
-              <span className="ml-2">{searchParams.get("message")}</span>
+              <span className="ml-2">{message}</span>
             </div>
-          ) : (
-            <></>
           )}
           <h1 className="text-2xl font-bold text-center mt-4">Login</h1>
           <p>Welcome to TalkLine</p>
