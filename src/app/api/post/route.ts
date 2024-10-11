@@ -59,9 +59,11 @@ export async function POST(request: NextRequest) {
     const payload = await validator.validate(data);
 
     const image = formData.get("image") as Blob | null;
+    console.log(image);
+    
     // * IF image exist
     if (image) {
-      const isImageNotValid = imagevalidator(image?.name, image?.size || 0);
+      const isImageNotValid = imagevalidator(image.type.split("/")[1], image?.size || 0);
       if (isImageNotValid) {
         return NextResponse.json({
           status: 400,
@@ -76,8 +78,7 @@ export async function POST(request: NextRequest) {
         const buffer = Buffer.from(await image!.arrayBuffer());
         const uploadDir = join(process.cwd(), "public", "/uploads");
         const uniqueName = Date.now() + "_" + getRandomNumber(1, 999999);
-        const imgExt = image?.name.split(".");
-        const filename = uniqueName + "." + imgExt?.[1];
+        const filename = uniqueName + "." + image.type.split("/")[1];
         await writeFile(`${uploadDir}/${filename}`, buffer);
         data.image = filename;
       } catch (error) {
@@ -118,3 +119,10 @@ export async function POST(request: NextRequest) {
     }
   }
 }
+
+
+// datasource db {
+//   provider = "postgresql"
+//   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+//   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+// }
