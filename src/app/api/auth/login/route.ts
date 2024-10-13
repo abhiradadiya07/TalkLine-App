@@ -32,16 +32,12 @@ export async function POST(request: NextRequest) {
           errors: { password: "Incorrect password" },
         });
       }
-      console.log("Before logged in");
       if (isPasswordSame) {
-      console.log("Inside logged in");
-
         return NextResponse.json({
           status: 200,
           message: "You logged in successfully!",
         });
       }
-      console.log("after logged in");
       return NextResponse.json({
         status: 400,
         errors: {

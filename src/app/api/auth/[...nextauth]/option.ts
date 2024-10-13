@@ -38,10 +38,7 @@ export const authOptions: AuthOptions = {
       token: JWT;
       session: CustomSession;
     }) {
-      // Send properties to the client, like an access_token and user id from a provider.
       session.user = token.user as CustomUser;
-      console.log(session.user,"###########");
-      console.log("session",session);
       return session;
     },
   },
@@ -68,7 +65,6 @@ export const authOptions: AuthOptions = {
         });
 
         if (user) {
-          console.log(user,"******************");
           return { ...user, id: user.id.toString() };
         } else {
           return null;
