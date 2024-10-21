@@ -11,9 +11,8 @@ const LikePost = ({ post }: { post: PostType }) => {
   const router = useRouter();
   const { toast } = useToast();
   const likeDislike = (status: string) => {
-    if (loading) return; // Prevent further requests while loading
+    if (loading || isLiked === status) return; // Prevent further requests while loading
     setLoading(true); // Start loading
-    // setIsLiked(status);
     axios
       .post("/api/like", {
         post_id: post.id,

@@ -9,3 +9,11 @@ export const prisma = globalForPrisma.prisma || new PrismaClient({
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export default prisma;
+
+
+
+// datasource db {
+//     provider = "postgresql"
+//     url = env("POSTGRES_PRISMA_URL") 
+//     directUrl = env("POSTGRES_URL_NON_POOLING")
+//   }
