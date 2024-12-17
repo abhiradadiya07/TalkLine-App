@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import vine, { errors } from "@vinejs/vine";
 import { getServerSession } from "next-auth";
+import { Buffer } from "buffer";
 import { join } from "path";
 import { writeFile } from "fs/promises";
 import { authOptions, CustomSession } from "../auth/[...nextauth]/option";
@@ -15,7 +16,7 @@ export async function GET() {
   if (!session) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
   }
-  
+
   const posts = await prisma.post.findMany({
     include: {
       user: {
@@ -44,12 +45,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-      
-      const session: CustomSession | null = await getServerSession(authOptions);
-      if (!session) {
-          return NextResponse.json({ status: 401, message: "Un-Authorized" });
-        }
-        const formData = await request.formData();
+    const session: CustomSession | null = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ status: 401, message: "Un-Authorized" });
+    }
+    const formData = await request.formData();
     const data = {
       content: formData.get("content"),
       image: "",
@@ -59,11 +59,12 @@ export async function POST(request: NextRequest) {
     const payload = await validator.validate(data);
 
     const image = formData.get("image") as Blob | null;
-    console.log(image);
-    
     // * IF image exist
     if (image) {
-      const isImageNotValid = imagevalidator(image.type.split("/")[1], image?.size || 0);
+      const isImageNotValid = imagevalidator(
+        image.type.split("/")[1],
+        image?.size || 0
+      );
       if (isImageNotValid) {
         return NextResponse.json({
           status: 400,
@@ -75,11 +76,13 @@ export async function POST(request: NextRequest) {
 
       // * Upload image if all good
       try {
-        const buffer = Buffer.from(await image!.arrayBuffer());
+        const arrayBuffer = await image.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
         const uploadDir = join(process.cwd(), "public", "/uploads");
         const uniqueName = Date.now() + "_" + getRandomNumber(1, 999999);
         const filename = uniqueName + "." + image.type.split("/")[1];
-        await writeFile(`${uploadDir}/${filename}`, buffer);
+
+        await writeFile(`${uploadDir}/${filename}`, new Uint8Array(buffer));
         data.image = filename;
       } catch (error) {
         return NextResponse.json({
@@ -96,7 +99,7 @@ export async function POST(request: NextRequest) {
           user_id: Number(session.user?.id),
           image: data.image ?? null,
         },
-      }); 
+      });
 
       return NextResponse.json({
         status: 200,
@@ -109,7 +112,6 @@ export async function POST(request: NextRequest) {
         message: "Error creating post in the database.",
       });
     }
-
   } catch (error) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return NextResponse.json(
